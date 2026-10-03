@@ -3,13 +3,12 @@
 Sitio web de **ProTekar España** — Alfombrillas 3D premium a medida para coches.
 
 ## Características
-- Landing page moderna con diseño dark premium
-- Configurador de vehículos interactivo con marcas europeas populares en España
-- Tabla comparativa ProTekar vs alfombrillas comunes
-- Sección de testimonios de clientes españoles
-- Detalles técnicos del producto
-- Diseño totalmente responsive
-- Animaciones de scroll y micro-interacciones
+- Landing page dark premium con acentos dorados (Space Grotesk / Sora / Inter)
+- Bloque de oferta con precio fijo configurable (`KIT_PRICE` en `app.js`)
+- Configurador de vehículos con 20 marcas populares en España
+- Comparador antes/después deslizable y tabla ProTekar vs común
+- Galería de fotos del producto instalado y detalles técnicos
+- Preguntas frecuentes, barra de compra fija y diseño responsive
 
 ## Tecnologías
 - HTML5 semántico
@@ -33,13 +32,13 @@ npx serve .
 protekar-espana/
 ├── index.html    # Estructura HTML completa
 ├── index.css     # Estilos y sistema de diseño
-├── app.js        # Lógica de la aplicación
+├── app.js        # Lógica de la aplicación (KIT_PRICE, CHECKOUT_URL)
+├── images/       # Fotos del producto
 └── README.md     # Este archivo
 ```
 
 ## Contacto
 - Email: soporte@protekar.es
-- Teléfono: +34 900 123 456
 - Ubicación: Madrid, España
 
 © 2026 ProTekar España · Todos los derechos reservados

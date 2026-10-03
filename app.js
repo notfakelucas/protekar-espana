@@ -2,45 +2,44 @@
    ProTekar España - App Logic
    ======================================== */
 
+// Precio del kit completo (delanteras + traseras), IVA incluido.
+const KIT_PRICE = 89.90;
+// URL del checkout. Se le añaden ?marca=&modelo=&anio= al seleccionar el coche.
+const CHECKOUT_URL = '#';
+
+const formatEUR = (n) => new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(n);
+
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ---- Navbar scroll effect ----
-    const navbar = document.getElementById('navbar');
-    const floatingCta = document.getElementById('floatingCta');
+    document.querySelectorAll('[data-price]').forEach(el => { el.textContent = formatEUR(KIT_PRICE); });
 
-    window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
-        if (scrollY > 60) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-        if (scrollY > 600) {
-            floatingCta.classList.add('visible');
-        } else {
-            floatingCta.classList.remove('visible');
-        }
-    });
-
-    // ---- Mobile nav toggle ----
+    // ---- Mobile nav drawer ----
     const navToggle = document.getElementById('navToggle');
-    const navLinks = document.getElementById('navLinks');
+    const navDrawer = document.getElementById('navDrawer');
 
     navToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        navToggle.classList.toggle('active');
+        const open = navDrawer.classList.toggle('open');
+        navToggle.classList.toggle('active', open);
+        navToggle.setAttribute('aria-expanded', open);
     });
 
-    navLinks.querySelectorAll('a').forEach(link => {
+    navDrawer.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
+            navDrawer.classList.remove('open');
             navToggle.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
         });
     });
 
+    // ---- Sticky buy bar ----
+    const buybar = document.getElementById('buybar');
+    window.addEventListener('scroll', () => {
+        buybar.classList.toggle('visible', window.scrollY > 600);
+    }, { passive: true });
+
     // ---- Scroll reveal animations ----
     const revealElements = document.querySelectorAll(
-        '.benefit-card, .testimonial-card, .detail-card, .comparison-row, .info-item'
+        '.benefit, .detail, .gallery-grid img, .offer-card, .config-card, .ba, .vs, .faq details'
     );
 
     revealElements.forEach(el => el.classList.add('reveal'));
@@ -48,9 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                setTimeout(() => {
-                    entry.target.classList.add('visible');
-                }, index * 80);
+                setTimeout(() => entry.target.classList.add('visible'), index * 80);
                 revealObserver.unobserve(entry.target);
             }
         });
@@ -58,14 +55,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     revealElements.forEach(el => revealObserver.observe(el));
 
-    // ---- Counter animation ----
+    // ---- Animated counters ----
     const counters = document.querySelectorAll('[data-count]');
     const counterObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const el = entry.target;
-                const target = parseInt(el.dataset.count);
-                animateCounter(el, target, 2000);
+                animateCounter(el, parseInt(el.dataset.count), el.dataset.suffix || '', 1600);
                 counterObserver.unobserve(el);
             }
         });
@@ -73,26 +69,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     counters.forEach(el => counterObserver.observe(el));
 
-    function animateCounter(el, target, duration) {
+    function animateCounter(el, target, suffix, duration) {
         const start = performance.now();
-        const formatter = new Intl.NumberFormat('es-ES');
-
         function update(now) {
-            const elapsed = now - start;
-            const progress = Math.min(elapsed / duration, 1);
+            const progress = Math.min((now - start) / duration, 1);
             const eased = 1 - Math.pow(1 - progress, 3);
-            const current = Math.floor(eased * target);
-            el.textContent = formatter.format(current);
-
-            if (progress < 1) {
-                requestAnimationFrame(update);
-            } else {
-                el.textContent = formatter.format(target);
-            }
+            el.textContent = Math.floor(eased * target) + suffix;
+            if (progress < 1) requestAnimationFrame(update);
         }
-
         requestAnimationFrame(update);
     }
+
+    // ---- Before / after slider ----
+    const ba = document.getElementById('beforeAfter');
+    const baRange = document.getElementById('baRange');
+    baRange.addEventListener('input', () => ba.style.setProperty('--pos', baRange.value + '%'));
 
     // ---- Vehicle configurator ----
     const vehicleData = {
@@ -249,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 tipo: { name: 'Tipo', years: ['2024', '2023', '2022', '2021', '2020'] },
                 panda: { name: 'Panda', years: ['2024', '2023', '2022', '2021', '2020'] },
                 500: { name: '500', years: ['2024', '2023', '2022', '2021', '2020'] },
-                500x: { name: '500X', years: ['2024', '2023', '2022', '2021', '2020'] }
+                '500x': { name: '500X', years: ['2024', '2023', '2022', '2021', '2020'] }
             }
         },
         nissan: {
@@ -305,10 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (marca && vehicleData[marca]) {
             const models = vehicleData[marca].models;
             Object.keys(models).forEach(key => {
-                const opt = document.createElement('option');
-                opt.value = key;
-                opt.textContent = models[key].name;
-                modeloSelect.appendChild(opt);
+                modeloSelect.appendChild(new Option(models[key].name, key));
             });
             modeloSelect.disabled = false;
         } else {
@@ -323,12 +311,8 @@ document.addEventListener('DOMContentLoaded', () => {
         anioSelect.innerHTML = '<option value="">Selecciona año</option>';
 
         if (marca && modelo && vehicleData[marca]?.models[modelo]) {
-            const years = vehicleData[marca].models[modelo].years;
-            years.forEach(year => {
-                const opt = document.createElement('option');
-                opt.value = year;
-                opt.textContent = year;
-                anioSelect.appendChild(opt);
+            vehicleData[marca].models[modelo].years.forEach(year => {
+                anioSelect.appendChild(new Option(year, year));
             });
             anioSelect.disabled = false;
         } else {
@@ -347,62 +331,24 @@ document.addEventListener('DOMContentLoaded', () => {
         if (marca && modelo && anio) {
             const brandName = vehicleData[marca].name;
             const modelName = vehicleData[marca].models[modelo].name;
-            const basePrice = 89.90 + Math.floor(Math.random() * 30);
-            const price = basePrice.toFixed(2).replace('.', ',');
+            const params = new URLSearchParams({ marca: brandName, modelo: modelName, anio });
+            const href = CHECKOUT_URL === '#' ? '#' : `${CHECKOUT_URL}?${params}`;
 
             resultado.innerHTML = `
-                <div class="result-active">
-                    <div class="result-vehicle">
-                        <span class="result-label">Tu vehículo</span>
-                        <span class="result-name">${brandName} ${modelName} ${anio}</span>
-                    </div>
-                    <div class="result-pricing">
-                        <span class="result-price-label">Kit Completo (Delanteras + Traseras)</span>
-                        <span class="result-price">${price} €</span>
-                        <span class="result-note">IVA incluido · Envío gratuito península</span>
-                    </div>
-                    <a href="#" class="result-cta">PEDIR AHORA</a>
-                </div>
+                <span class="result-label">Tu vehículo</span>
+                <div class="result-vehicle">${brandName} ${modelName} ${anio}</div>
+                <span class="result-price">${formatEUR(KIT_PRICE)}</span>
+                <p class="result-text">Kit completo (delanteras + traseras) · IVA incluido · Envío gratis península</p>
+                <a href="${href}" class="btn-gold">Comprar ahora →</a>
             `;
-
-            // Inject styles for result
-            if (!document.getElementById('resultStyles')) {
-                const style = document.createElement('style');
-                style.id = 'resultStyles';
-                style.textContent = `
-                    .result-active { text-align: center; }
-                    .result-vehicle { margin-bottom: 20px; }
-                    .result-label { display: block; font-size: 0.75rem; color: rgba(240,240,245,0.4); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; }
-                    .result-name { display: block; font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em; }
-                    .result-pricing { margin-bottom: 24px; }
-                    .result-price-label { display: block; font-size: 0.85rem; color: rgba(240,240,245,0.5); margin-bottom: 8px; }
-                    .result-price { display: block; font-size: 2.5rem; font-weight: 900; background: linear-gradient(135deg, #c8a44e, #e8c96a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.02em; }
-                    .result-note { display: block; font-size: 0.78rem; color: rgba(240,240,245,0.35); margin-top: 6px; }
-                    .result-cta { display: inline-block; padding: 14px 40px; background: linear-gradient(135deg, #c8a44e, #e8c96a); color: #0a0a0f; font-weight: 700; font-size: 0.85rem; letter-spacing: 1.5px; border-radius: 28px; transition: 0.3s; box-shadow: 0 0 40px rgba(200,164,78,0.15); }
-                    .result-cta:hover { transform: translateY(-2px); box-shadow: 0 0 60px rgba(200,164,78,0.25); }
-                `;
-                document.head.appendChild(style);
-            }
         } else {
             resultado.innerHTML = `
-                <div class="result-placeholder">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M5 11V7a7 7 0 0114 0v4"/><circle cx="12" cy="16" r="1"/></svg>
-                    <p>Selecciona tu coche arriba para ver el precio personalizado</p>
-                </div>
+                <span class="result-label">Desde</span>
+                <span class="result-price">${formatEUR(KIT_PRICE)}</span>
+                <p class="result-text">Selecciona tu vehículo arriba para ver tu kit a medida</p>
             `;
         }
     }
 
-    // ---- Smooth scroll for anchor links ----
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            e.preventDefault();
-            const target = document.querySelector(targetId);
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
-    });
+    updateResult();
 });
