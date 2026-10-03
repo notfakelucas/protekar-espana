@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar compra — ProTekar España</title>
+    <meta name="robots" content="noindex">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+    <header class="header">
+        <a href="/" class="logo"><img src="images/protekar-logo-dark.png" alt="ProTekar 3D" width="130" height="36"></a>
+        <span class="secure"><svg viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg> Conexión segura · SSL 256 bits</span>
+    </header>
+    <div class="trust">
+        <span>🛡️ Pago protegido</span>
+        <span>🚚 Envío gratis a toda España peninsular</span>
+        <span>✓ Garantía de 12 meses</span>
+        <span>↩ 30 días para devolver</span>
+    </div>
+
+    <form class="wrap" id="checkoutForm" novalidate>
+        <div class="col-main">
+            <div class="phead">
+                <h1>Completa tu pedido</h1>
+                <p class="lead">Te lleva menos de 2 minutos. Envío con seguimiento, garantía de 12 meses y 30 días para devolver, todo incluido.</p>
+            </div>
+
+            <ol class="steps">
+                <li class="st done"><span class="n">✓</span> Producto elegido</li>
+                <li class="ln"></li>
+                <li class="st on"><span class="n">2</span> Datos y envío</li>
+                <li class="ln"></li>
+                <li class="st"><span class="n">3</span> Pago</li>
+            </ol>
+
+            <!-- Vehicle (only if it did not arrive from the configurator) -->
+            <section class="card" id="vehicleCard" hidden>
+                <div class="sec"><span class="ic">🚗</span><div><h2>Tu vehículo</h2><p class="sh">Lo necesitamos para cortar las alfombrillas a la medida exacta.</p></div></div>
+                <div class="grid g3">
+                    <label class="field"><span>Marca <i class="req">*</i></span><input name="marca" placeholder="Ej: SEAT" maxlength="60" required></label>
+                    <label class="field"><span>Modelo <i class="req">*</i></span><input name="modelo" placeholder="Ej: León" maxlength="60" required></label>
+                    <label class="field"><span>Año <i class="req">*</i></span><input name="anio" inputmode="numeric" placeholder="Ej: 2021" maxlength="4" pattern="\d{4}" required></label>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="sec">
+                    <span class="ic">👤</span>
+                    <div><h2>Tus datos</h2><p class="sh">Los usamos para confirmarte el pedido y avisarte del envío.</p></div>
+                    <span class="pill">🔒 Datos protegidos</span>
+                </div>
+                <label class="field"><span>Nombre completo <i class="req">*</i></span><input name="nombre" autocomplete="name" placeholder="Ej: Laura García" maxlength="80" required></label>
+                <div class="grid">
+                    <label class="field"><span>Correo <i class="req">*</i></span><input name="email" type="email" autocomplete="email" placeholder="tucorreo@email.com" maxlength="120" required></label>
+                    <label class="field"><span>Teléfono (WhatsApp) <i class="req">*</i></span><input name="telefono" type="tel" autocomplete="tel" placeholder="612 345 678" maxlength="30" required></label>
+                </div>
+                <label class="field"><span>DNI / NIE <em>(opcional, para la factura)</em></span><input name="nif" autocomplete="off" placeholder="Ej: 12345678Z" maxlength="20"></label>
+            </section>
+
+            <section class="card">
+                <div class="sec">
+                    <span class="ic">📍</span>
+                    <div><h2>Dirección de entrega</h2><p class="sh">Dinos exactamente dónde quieres recibir tus alfombrillas.</p></div>
+                    <span class="pill">España</span>
+                </div>
+                <div class="grid">
+                    <label class="field"><span>Provincia <i class="req">*</i></span>
+                        <select name="region" autocomplete="address-level1" required>
+                            <option value="">Selecciona…</option>
+                        </select>
+                    </label>
+                    <label class="field"><span>Ciudad <i class="req">*</i></span><input name="ciudad" autocomplete="address-level2" placeholder="Ej: Madrid" maxlength="80" required></label>
+                </div>
+                <div class="grid g-cp">
+                    <label class="field"><span>Dirección <i class="req">*</i></span><input name="direccion" autocomplete="address-line1" placeholder="Calle, número, piso y puerta" maxlength="160" required></label>
+                    <label class="field"><span>Código postal <i class="req">*</i></span><input name="cp" autocomplete="postal-code" inputmode="numeric" placeholder="28001" maxlength="5" pattern="\d{5}" required></label>
+                </div>
+
+                <div class="ship-wrap" id="shipWrap">
+                    <p class="hint" id="shipHint">📍 Completa tu <b>dirección de entrega</b> para ver las opciones de envío y el plazo.</p>
+                    <div id="shipOptions" hidden></div>
+                </div>
+                <p class="ship-note">Enviamos a toda España peninsular. Preparamos tus alfombrillas a la medida exacta de tu vehículo antes de expedirlas; por eso el envío estándar tarda unos días más.</p>
+            </section>
+
+            <section class="card paycard">
+                <div class="sec">
+                    <span class="ic">💳</span>
+                    <div><h2>Pago 100% seguro</h2><p class="sh">Eliges cómo pagar en la pantalla segura de Stripe.</p></div>
+                    <span class="pill">🔒 Cifrado</span>
+                </div>
+                <label class="pm on">
+                    <input type="radio" name="pm" value="stripe" checked>
+                    <span class="pm-radio"></span>
+                    <span class="pm-logo">stripe</span>
+                    <span class="pm-net">
+                        <img src="images/pay-visa.png" alt="Visa" height="16">
+                        <img src="images/pay-mastercard.png" alt="Mastercard" height="16">
+                        <span class="pm-more">Apple Pay · Google Pay · Bizum</span>
+                    </span>
+                </label>
+                <p class="pay-note">Al confirmar te llevamos al entorno seguro de Stripe, donde puedes pagar con <b>tarjeta de crédito o débito, Apple Pay, Google Pay</b> u otros métodos disponibles. Nosotros nunca vemos ni guardamos los datos de tu tarjeta.</p>
+                <p class="form-error" id="formError" role="alert" hidden></p>
+                <button type="submit" class="pay-btn" id="payBtn">
+                    <svg viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
+                    <span>Pagar ahora · <b data-total></b></span>
+                </button>
+                <p class="ssl">Conexión cifrada SSL 256 bits · No almacenamos datos de tarjeta</p>
+            </section>
+
+            <section class="card">
+                <div class="sum-head">🧾 Resumen del pedido</div>
+                <div class="prod">
+                    <img class="prod-img" id="prodImg" alt="">
+                    <div class="meta">
+                        <b id="prodName"></b>
+                        <span class="mut" id="prodVehicle"></span>
+                        <span class="anchor" id="prodAnchor" hidden><s class="old" id="prodOld"></s> <span class="off" id="prodOff"></span></span>
+                    </div>
+                </div>
+                <div class="lines" id="sumLines"></div>
+                <div class="total"><span class="l">Total a pagar</span><span class="r" data-total></span></div>
+                <p class="saved" id="sumSaved" hidden></p>
+                <p class="count" id="promoCount" hidden>⏱ La promoción termina en <b id="promoTimer"></b></p>
+                <ul class="badges">
+                    <li><span class="i">📦</span> Seguimiento del pedido <b>paso a paso</b> hasta tu puerta</li>
+                    <li><span class="i">🛡️</span> Garantía de <b>12 meses</b> + 30 días para devolver</li>
+                    <li><span class="i">💳</span> Cobro procesado por <b>Stripe</b></li>
+                    <li><span class="i">✉</span> Confirmación al instante por <b>correo</b></li>
+                </ul>
+            </section>
+
+            <!-- Rating + reviews: only rendered when reviews.js has real reviews -->
+            <section class="card" id="rateCard" hidden>
+                <div class="rate"><span class="stars">★★★★★</span> <b id="rateAvg"></b> <span class="mut" id="rateCount"></span></div>
+                <div class="quotes" id="quotes"></div>
+            </section>
+
+            <section class="card">
+                <div class="ph-head"><b>Fotos del producto</b><span class="mut" id="phCount"></span></div>
+                <div class="sp-gallery">
+                    <div class="sp-track" id="spTrack">
+                        <figure class="sp-slide"><img src="images/foto-producto-1.webp" alt="Kit ProTekar recibido"><figcaption class="sp-slide-label">Kit recibido</figcaption></figure>
+                        <figure class="sp-slide"><img src="images/foto-producto-2.webp" alt="Set completo de alfombrillas"><figcaption class="sp-slide-label">Set completo</figcaption></figure>
+                        <figure class="sp-slide"><img src="images/foto-producto-3.webp" alt="Embalaje protegido"><figcaption class="sp-slide-label">Embalaje protegido</figcaption></figure>
+                        <figure class="sp-slide"><img src="images/foto-producto-4.webp" alt="Ajuste a medida"><figcaption class="sp-slide-label">Ajuste perfecto</figcaption></figure>
+                        <figure class="sp-slide"><img src="images/foto-producto-5.webp" alt="Maletero protegido"><figcaption class="sp-slide-label">Maletero protegido</figcaption></figure>
+                    </div>
+                    <button type="button" class="ph-btn prev" id="phPrev" aria-label="Foto anterior">‹</button>
+                    <button type="button" class="ph-btn next" id="phNext" aria-label="Foto siguiente">›</button>
+                </div>
+                <div class="dots" id="phDots"></div>
+            </section>
+        </div>
+
+        <aside class="side">
+            <section class="card">
+                <div class="sec"><span class="ic">✨</span><div><h2>Añade y ahorra</h2><p class="sh">Se envían junto a tu pedido, sin coste extra de envío.</p></div></div>
+                <div id="bumps"></div>
+            </section>
+            <button type="submit" class="pay-btn side-btn">
+                <svg viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
+                <span>Pagar de forma segura · <b data-total></b></span>
+            </button>
+        </aside>
+    </form>
+
+    <footer class="foot">© 2026 ProTekar España · <a href="/">Volver a la tienda</a></footer>
+
+    <script src="reviews.js"></script>
+    <script src="checkout.js"></script>
+</body>
+</html>

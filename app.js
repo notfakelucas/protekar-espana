@@ -5,7 +5,7 @@
 // Precio del kit completo (delanteras + traseras), IVA incluido.
 const KIT_PRICE = 89.90;
 // URL del checkout. Se le añaden ?marca=&modelo=&anio= al seleccionar el coche.
-const CHECKOUT_URL = '#';
+const CHECKOUT_URL = '/checkout.html';
 
 const formatEUR = (n) => new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(n);
 
