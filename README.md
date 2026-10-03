@@ -5,7 +5,8 @@ Sitio web de **ProTekar España** — Alfombrillas 3D premium a medida para coch
 ## Características
 - Landing page dark premium con acentos dorados (Space Grotesk / Sora / Inter)
 - Bloque de oferta con precio fijo configurable (`KIT_PRICE` en `app.js`)
-- Configurador de vehículos con 20 marcas populares en España
+- Configurador de vehículos con 46 marcas presentes en España (modelos hasta 2026)
+- Fotos ampliables (lightbox) en oferta, carrusel, detalles y reseñas
 - Comparador antes/después deslizable y tabla ProTekar vs común
 - Carrusel de fotos del producto instalado y detalles técnicos
 - Sección de reseñas que se rellena desde `reviews.js` (oculta mientras esté vacía)
