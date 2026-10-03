@@ -7,7 +7,8 @@ Sitio web de **ProTekar España** — Alfombrillas 3D premium a medida para coch
 - Bloque de oferta con precio fijo configurable (`KIT_PRICE` en `app.js`)
 - Configurador de vehículos con 20 marcas populares en España
 - Comparador antes/después deslizable y tabla ProTekar vs común
-- Galería de fotos del producto instalado y detalles técnicos
+- Carrusel de fotos del producto instalado y detalles técnicos
+- Sección de reseñas que se rellena desde `reviews.js` (oculta mientras esté vacía)
 - Preguntas frecuentes, barra de compra fija y diseño responsive
 
 ## Tecnologías
@@ -33,6 +34,7 @@ protekar-espana/
 ├── index.html    # Estructura HTML completa
 ├── index.css     # Estilos y sistema de diseño
 ├── app.js        # Lógica de la aplicación (KIT_PRICE, CHECKOUT_URL)
+├── reviews.js    # Reseñas reales de clientes de España
 ├── images/       # Fotos del producto
 └── README.md     # Este archivo
 ```

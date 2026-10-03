@@ -7,274 +7,279 @@
     <meta name="description" content="Alfombrillas 3D premium a medida para tu coche. Protección total contra suciedad, líquidos y desgaste. Envíos a toda España.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <!-- Announcement bar -->
-    <div class="announce">
-        <span>Envío <strong>GRATIS</strong> a toda España peninsular</span>
-        <span class="announce-sep">·</span>
-        <span>Garantía 12 meses</span>
-        <span class="announce-sep">·</span>
-        <span>30 días de devolución</span>
+    <!-- Top bar -->
+    <div class="topbar">
+        <span>🚚</span> Envío <b>GRATIS</b> a toda España peninsular · Garantía <b>12 meses</b>
     </div>
 
     <!-- Header -->
     <header class="header" id="header">
-        <div class="header-inner">
-            <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
-            <a href="#hero" class="header-logo" aria-label="ProTekar España">
-                <img src="images/protekar-logo.png" alt="ProTekar 3D" width="140" height="40">
-            </a>
-            <a href="#oferta" class="header-cta">Comprar</a>
-        </div>
-        <nav class="nav-drawer" id="navDrawer">
-            <a href="#hero">Inicio</a>
-            <a href="#beneficios">Beneficios</a>
-            <a href="#configurador">Configura tu coche</a>
-            <a href="#comparativo">Comparativa</a>
-            <a href="#galeria">Fotos del producto</a>
-            <a href="#detalles">Detalles</a>
-            <a href="#faq">Preguntas frecuentes</a>
-        </nav>
+        <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <a href="#hero" class="header-logo" aria-label="ProTekar España">
+            <img src="images/protekar-logo.png" alt="ProTekar 3D" width="120" height="34">
+        </a>
+        <span class="header-spacer"></span>
     </header>
+
+    <!-- Side menu -->
+    <div class="menu-overlay" id="menuOverlay" hidden></div>
+    <nav class="menu" id="menu" aria-hidden="true">
+        <img src="images/protekar-logo.png" alt="ProTekar 3D" class="menu-logo">
+        <a href="#hero">Inicio</a>
+        <a href="#beneficios">Beneficios</a>
+        <a href="#configurador">Configura tu coche</a>
+        <a href="#comparativo">Antes y después</a>
+        <a href="#satisfaccion">El producto instalado</a>
+        <a href="#detalles">Detalles</a>
+        <a href="#faq">Preguntas frecuentes</a>
+    </nav>
 
     <!-- Hero -->
     <section class="hero" id="hero">
         <img class="hero-bg" src="images/produto-instalado-carro.webp" alt="" aria-hidden="true">
         <div class="hero-overlay"></div>
+        <div class="hero-overlay-bottom"></div>
         <div class="hero-content">
-            <p class="eyebrow">Alfombrillas 3D premium para coche</p>
-            <h1 class="hero-title">Protege<br>tu vehículo.</h1>
-            <p class="hero-sub">Hechas a la medida de tu modelo. Protección total contra suciedad, líquidos y desgaste.</p>
-            <a href="#configurador" class="btn-gold">Personalizar mi kit</a>
+            <p class="hero-subtitle">Alfombrillas 3D premium para coche</p>
+            <h1 class="hero-title">Protege tu vehículo.</h1>
+            <p class="hero-description">Hechas a la medida de tu modelo. Protección total contra suciedad, líquidos y desgaste.</p>
+            <a href="#configurador" class="btn-outline">PERSONALIZAR MI KIT</a>
         </div>
     </section>
 
     <!-- Offer -->
-    <section class="offer" id="oferta">
-        <div class="container">
-            <div class="offer-card">
-                <div class="offer-strip">Kit completo a medida · delanteras + traseras</div>
-                <div class="offer-body">
-                    <div class="offer-media">
-                        <img src="images/completo.webp" alt="Kit completo de alfombrillas 3D ProTekar" loading="lazy">
+    <section class="offer-sec" id="oferta">
+        <div class="offer">
+            <div class="offer-flag">KIT COMPLETO A MEDIDA · DELANTERAS + TRASERAS</div>
+            <div class="offer-grid">
+                <img class="offer-img" src="images/completo.webp" alt="Kit completo de alfombrillas 3D ProTekar">
+                <div class="offer-info">
+                    <h2>Kit de Alfombrillas 3D a la medida de tu coche</h2>
+                    <div class="price-row">
+                        <span class="price-from">Desde</span>
+                        <span class="price-now" data-price></span>
+                        <span class="price-tax">IVA incluido</span>
                     </div>
-                    <div class="offer-info">
-                        <h2 class="offer-title">Kit de Alfombrillas 3D a la medida de tu coche</h2>
-                        <div class="offer-price">
-                            <span class="price-from">Desde</span>
-                            <span class="price-now" data-price></span>
-                            <span class="price-tax">IVA incluido</span>
-                        </div>
-                        <ul class="offer-list">
-                            <li>Envío <strong>GRATIS</strong> con seguimiento a toda España peninsular</li>
-                            <li>Fabricado a la medida exacta de tu modelo</li>
-                            <li>Garantía 12 meses + 30 días de devolución</li>
-                            <li>Pago seguro con tarjeta</li>
-                        </ul>
-                        <a href="#configurador" class="btn-gold btn-block">Seleccionar mi coche →</a>
-                        <p class="offer-secure">🔒 Pago 100% seguro · tarjeta de crédito y débito</p>
-                    </div>
+                    <ul class="offer-list">
+                        <li>Envío <b>GRATIS</b> con seguimiento a toda España peninsular</li>
+                        <li>Fabricado a la medida exacta de tu modelo</li>
+                        <li>Garantía 12 meses + 30 días de devolución</li>
+                        <li>Pago 100% seguro con tarjeta</li>
+                    </ul>
+                    <a href="#configurador" class="cta-big">SELECCIONAR MI COCHE →</a>
+                    <div class="offer-pay">🔒 Pago seguro · tarjeta de crédito y débito</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Benefits -->
-    <section class="benefits" id="beneficios">
-        <div class="container benefits-grid">
-            <div class="benefit">
-                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                <h3>Protección total</h3>
-                <p>Contra suciedad, líquidos y desgaste.</p>
-            </div>
-            <div class="benefit">
-                <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
-                <h3>Ajuste perfecto</h3>
-                <p>A la medida de +500 modelos.</p>
-            </div>
-            <div class="benefit">
-                <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
-                <h3>100% impermeable</h3>
-                <p>Borde elevado que retiene líquidos.</p>
-            </div>
-            <div class="benefit">
-                <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                <h3>Garantía 12 meses</h3>
-                <p>Contra defectos de fabricación.</p>
-            </div>
+    <section class="beneficios" id="beneficios">
+        <div class="beneficio">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <h3>Protección Total</h3>
+            <p>Contra suciedad, líquidos y desgaste.</p>
+        </div>
+        <div class="beneficio">
+            <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+            <h3>Ajuste Perfecto</h3>
+            <p>A la medida de +500 modelos.</p>
+        </div>
+        <div class="beneficio">
+            <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
+            <h3>100% Impermeable</h3>
+            <p>Borde elevado que retiene líquidos.</p>
+        </div>
+        <div class="beneficio">
+            <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <h3>Garantía 12 Meses</h3>
+            <p>Contra defectos de fabricación.</p>
         </div>
     </section>
 
-    <!-- Configurator -->
-    <section class="configurator" id="configurador">
-        <div class="container">
-            <div class="section-head">
-                <p class="eyebrow">Personalización a medida</p>
-                <h2 class="section-title">Configura tu coche</h2>
-                <p class="section-sub">Selecciona marca, modelo y año para ver el kit de tu vehículo.</p>
+    <!-- Configurator (light section) -->
+    <section class="configurador" id="configurador">
+        <p class="eyebrow">PERSONALIZACIÓN A LA MEDIDA</p>
+        <h2 class="cfg-title">Configura tu coche</h2>
+        <p class="cfg-sub">Selecciona marca, modelo y año para ver el kit de tu vehículo.</p>
+
+        <div class="config-card">
+            <div class="config-card-head">
+                <span class="config-icon">
+                    <svg viewBox="0 0 24 24"><path d="M5 17h14M6 17l1.5-6h9L18 17M8 11l1.5-4h5L16 11"/><circle cx="8" cy="17" r="1.5"/><circle cx="16" cy="17" r="1.5"/></svg>
+                </span>
+                IDENTIFICACIÓN DEL VEHÍCULO
             </div>
-            <div class="config-card">
-                <p class="config-label">Identificación del vehículo</p>
-                <div class="config-form">
-                    <label>Marca
-                        <select id="marca">
-                            <option value="">Selecciona marca</option>
-                            <option value="audi">Audi</option>
-                            <option value="bmw">BMW</option>
-                            <option value="citroen">Citroën</option>
-                            <option value="cupra">CUPRA</option>
-                            <option value="dacia">Dacia</option>
-                            <option value="fiat">Fiat</option>
-                            <option value="ford">Ford</option>
-                            <option value="hyundai">Hyundai</option>
-                            <option value="kia">Kia</option>
-                            <option value="mazda">Mazda</option>
-                            <option value="mercedes">Mercedes-Benz</option>
-                            <option value="nissan">Nissan</option>
-                            <option value="opel">Opel</option>
-                            <option value="peugeot">Peugeot</option>
-                            <option value="renault">Renault</option>
-                            <option value="seat">SEAT</option>
-                            <option value="skoda">Škoda</option>
-                            <option value="toyota">Toyota</option>
-                            <option value="volkswagen">Volkswagen</option>
-                            <option value="volvo">Volvo</option>
-                        </select>
-                    </label>
-                    <label>Modelo
-                        <select id="modelo" disabled>
-                            <option value="">Primero selecciona marca</option>
-                        </select>
-                    </label>
-                    <label>Año
-                        <select id="anio" disabled>
-                            <option value="">Primero selecciona modelo</option>
-                        </select>
-                    </label>
-                </div>
-                <a href="mailto:soporte@protekar.es" class="config-help">No encuentro mi vehículo</a>
-                <div class="config-result" id="configuradorResultado"></div>
-                <div class="config-foot">
-                    <span>🚚 Envío a toda España</span>
-                    <span>🛡️ Garantía 12 meses</span>
-                </div>
+            <div class="config-grid">
+                <select id="marca" aria-label="Marca">
+                    <option value="">Marca</option>
+                    <option value="audi">AUDI</option>
+                    <option value="bmw">BMW</option>
+                    <option value="citroen">CITROËN</option>
+                    <option value="cupra">CUPRA</option>
+                    <option value="dacia">DACIA</option>
+                    <option value="fiat">FIAT</option>
+                    <option value="ford">FORD</option>
+                    <option value="hyundai">HYUNDAI</option>
+                    <option value="kia">KIA</option>
+                    <option value="mazda">MAZDA</option>
+                    <option value="mercedes">MERCEDES-BENZ</option>
+                    <option value="nissan">NISSAN</option>
+                    <option value="opel">OPEL</option>
+                    <option value="peugeot">PEUGEOT</option>
+                    <option value="renault">RENAULT</option>
+                    <option value="seat">SEAT</option>
+                    <option value="skoda">ŠKODA</option>
+                    <option value="toyota">TOYOTA</option>
+                    <option value="volkswagen">VOLKSWAGEN</option>
+                    <option value="volvo">VOLVO</option>
+                </select>
+                <select id="modelo" aria-label="Modelo" disabled>
+                    <option value="">Modelo</option>
+                </select>
+                <select id="anio" aria-label="Año" class="full" disabled>
+                    <option value="">Año</option>
+                </select>
             </div>
+            <a href="mailto:soporte@protekar.es" class="config-help">
+                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+                No encuentro mi vehículo
+            </a>
         </div>
+
+        <div class="price-card" id="configuradorResultado"></div>
+
+        <ul class="cfg-perks">
+            <li>🚚 Envío a toda España</li>
+            <li>🛡️ Garantía 12 meses</li>
+        </ul>
     </section>
 
     <!-- Before / after -->
-    <section class="compare" id="comparativo">
-        <div class="container">
-            <div class="section-head">
-                <h2 class="section-title">Mira la diferencia</h2>
-                <p class="section-sub">Protección real en el día a día</p>
+    <section class="antes-depois" id="comparativo">
+        <h2 class="section-title-center">Mira la diferencia</h2>
+        <p class="section-sub-center">Protección real en el día a día</p>
+        <div class="ba" id="beforeAfter">
+            <img src="images/depois-tapete.jpg" alt="Alfombrilla ProTekar instalada" class="ba-img">
+            <div class="ba-before">
+                <img src="images/antes-tapete.jpg" alt="Moqueta original sin protección" class="ba-img">
             </div>
-            <div class="ba" id="beforeAfter">
-                <img src="images/depois-tapete.jpg" alt="Alfombrilla ProTekar después de usar" class="ba-img">
-                <div class="ba-before" id="baBefore">
-                    <img src="images/antes-tapete.jpg" alt="Moqueta original sin protección" class="ba-img">
-                </div>
-                <span class="ba-tag ba-tag-l">Antes</span>
-                <span class="ba-tag ba-tag-r">Después</span>
-                <div class="ba-handle" id="baHandle"><span>⇆</span></div>
-                <input type="range" min="0" max="100" value="50" id="baRange" aria-label="Comparar antes y después">
-            </div>
+            <span class="ba-tag ba-tag-l">ANTES</span>
+            <span class="ba-tag ba-tag-r">DESPUÉS</span>
+            <div class="ba-handle"><span>⇆</span></div>
+            <input type="range" min="0" max="100" value="50" id="baRange" aria-label="Comparar antes y después">
+        </div>
+    </section>
 
-            <div class="table-wrap">
-                <table class="vs">
-                    <caption>ProTekar vs alfombrilla común</caption>
-                    <thead>
-                        <tr><th>Característica</th><th class="vs-pk">ProTekar</th><th>Común</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>A la medida de tu coche</td><td class="yes">✓</td><td class="no">✕</td></tr>
-                        <tr><td>Bordes elevados 5 cm</td><td class="yes">✓</td><td class="no">✕</td></tr>
-                        <tr><td>100% impermeable</td><td class="yes">✓</td><td class="no">✕</td></tr>
-                        <tr><td>Ojales compatibles de origen</td><td class="yes">✓</td><td class="no">✕</td></tr>
-                        <tr><td>Goma premium 7 mm</td><td class="yes">✓</td><td class="no">✕</td></tr>
-                        <tr><td>Garantía de 12 meses</td><td class="yes">✓</td><td class="no">✕</td></tr>
-                    </tbody>
-                </table>
+    <!-- Comparison table -->
+    <section class="tabela">
+        <h2 class="section-title-center">ProTekar vs Alfombrilla Común</h2>
+        <div class="table-wrap">
+            <table class="vs">
+                <thead>
+                    <tr><th>CARACTERÍSTICA</th><th class="vs-pk">PROTEKAR</th><th>COMÚN</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>A la medida de tu coche</td><td class="yes">✓</td><td class="no">–</td></tr>
+                    <tr><td>Bordes elevados 5 cm</td><td class="yes">✓</td><td class="no">–</td></tr>
+                    <tr><td>100% impermeable</td><td class="yes">✓</td><td class="no">–</td></tr>
+                    <tr><td>Ojales compatibles de origen</td><td class="yes">✓</td><td class="no">–</td></tr>
+                    <tr><td>Goma premium 7 mm</td><td class="yes">✓</td><td class="no">–</td></tr>
+                    <tr><td>Garantía de 12 meses</td><td class="yes">✓</td><td class="no">–</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Product photo marquee -->
+    <section class="satisfaccion" id="satisfaccion">
+        <h2 class="section-title-center">Satisfacción Garantizada</h2>
+        <p class="section-sub-center">El producto instalado en distintos vehículos: delanteras, traseras y maletero</p>
+        <div class="marquee" aria-label="Fotos del producto instalado">
+            <div class="marquee-track">
+                <img src="images/cliente-1.png" alt="Alfombrilla ProTekar instalada">
+                <img src="images/cliente-2.png" alt="Alfombrilla ProTekar instalada">
+                <img src="images/cliente-3.webp" alt="Alfombrilla ProTekar instalada">
+                <img src="images/cliente-4.webp" alt="Alfombrilla ProTekar instalada">
+                <img src="images/cliente-5.webp" alt="Alfombrilla ProTekar instalada">
+                <img src="images/cliente-6.png" alt="Alfombrilla ProTekar instalada">
+                <img src="images/cliente-7.webp" alt="Alfombrilla ProTekar instalada">
+                <img src="images/cliente-1.png" alt="" aria-hidden="true">
+                <img src="images/cliente-2.png" alt="" aria-hidden="true">
+                <img src="images/cliente-3.webp" alt="" aria-hidden="true">
+                <img src="images/cliente-4.webp" alt="" aria-hidden="true">
+                <img src="images/cliente-5.webp" alt="" aria-hidden="true">
+                <img src="images/cliente-6.png" alt="" aria-hidden="true">
+                <img src="images/cliente-7.webp" alt="" aria-hidden="true">
             </div>
         </div>
     </section>
 
-    <!-- Product photo gallery -->
-    <section class="gallery" id="galeria">
-        <div class="container">
-            <div class="section-head">
-                <h2 class="section-title">El producto instalado</h2>
-                <p class="section-sub">Así queda ProTekar en distintos vehículos: delanteras, traseras y maletero.</p>
+    <!-- Customer reviews (rendered from reviews.js; hidden while empty) -->
+    <section class="resenas" id="resenas" hidden>
+        <div class="resenas-header">
+            <div class="resenas-badge">
+                <span class="stars">★★★★★</span>
+                <span class="rating-inline"><strong id="ratingAvg"></strong> · <span id="ratingCount"></span></span>
             </div>
-            <div class="gallery-grid">
-                <img src="images/cliente-1.png" alt="Alfombrilla ProTekar instalada" loading="lazy">
-                <img src="images/cliente-2.png" alt="Alfombrilla ProTekar instalada" loading="lazy">
-                <img src="images/cliente-3.webp" alt="Alfombrilla ProTekar instalada" loading="lazy">
-                <img src="images/cliente-4.webp" alt="Alfombrilla ProTekar instalada" loading="lazy">
-                <img src="images/cliente-5.webp" alt="Alfombrilla ProTekar instalada" loading="lazy">
-                <img src="images/cliente-6.png" alt="Alfombrilla ProTekar instalada" loading="lazy">
-                <img src="images/cliente-7.webp" alt="Alfombrilla ProTekar instalada" loading="lazy">
-            </div>
+            <h2 class="section-title-center">Lo que dicen nuestros clientes</h2>
+            <p class="section-sub-center">Reseñas de clientes con fotos del producto instalado</p>
         </div>
+        <div id="resenasList"></div>
     </section>
 
     <!-- Stats -->
-    <section class="stats">
-        <div class="container stats-grid">
-            <div><span class="stat-num" data-count="500" data-suffix="+">0</span><span class="stat-label">Modelos compatibles</span></div>
-            <div><span class="stat-num" data-count="100" data-suffix="%">0</span><span class="stat-label">Impermeable</span></div>
-            <div><span class="stat-num" data-count="12">0</span><span class="stat-label">Meses de garantía</span></div>
+    <section class="estadisticas">
+        <div class="stats-grid">
+            <div class="stat"><span class="stat-num" data-count="500" data-suffix="+">0</span><span class="stat-label">MODELOS COMPATIBLES</span></div>
+            <div class="stat"><span class="stat-num" data-count="100" data-suffix="%">0</span><span class="stat-label">IMPERMEABLE</span></div>
+            <div class="stat"><span class="stat-num" data-count="12">0</span><span class="stat-label">MESES DE GARANTÍA</span></div>
         </div>
     </section>
 
     <!-- Details -->
-    <section class="details" id="detalles">
-        <div class="container">
-            <div class="section-head">
-                <h2 class="section-title">Detalles que marcan la diferencia</h2>
-            </div>
-            <div class="details-grid">
-                <article class="detail">
-                    <img src="images/detalhe-borracha.webp" alt="Goma premium de 7 mm" loading="lazy">
-                    <h3>Goma premium de alto rendimiento</h3>
-                    <p>7 mm de grosor con alta resistencia al desgaste. Totalmente impermeable y estable tras años de uso intenso.</p>
-                </article>
-                <article class="detail">
-                    <img src="images/detalhe-ilhos.webp" alt="Ojales de fijación de origen" loading="lazy">
-                    <h3>Ojales de fijación de origen</h3>
-                    <p>Ojales metálicos que encajan en los anclajes de fábrica de tu coche. La alfombrilla no se desliza.</p>
-                </article>
-                <article class="detail">
-                    <img src="images/detalhe-borda.webp" alt="Bordes elevados de 5 cm" loading="lazy">
-                    <h3>Bordes elevados de contención</h3>
-                    <p>5 cm de borde para retener líquidos, barro y restos, y mantener intacta la moqueta original.</p>
-                </article>
-            </div>
-        </div>
+    <section class="detalles" id="detalles">
+        <h2 class="section-title-left">Detalles que marcan la diferencia</h2>
+        <article class="detalle">
+            <div class="detalle-image"><img src="images/detalhe-borracha.webp" alt="Goma premium de 7 mm" loading="lazy"></div>
+            <h3>Goma Premium de Alto Rendimiento</h3>
+            <p>7 mm de grosor con alta resistencia al desgaste. Totalmente impermeable y estable tras años de uso intenso.</p>
+        </article>
+        <article class="detalle">
+            <div class="detalle-image"><img src="images/detalhe-ilhos.webp" alt="Ojales de fijación de origen" loading="lazy"></div>
+            <h3>Ojales de Fijación de Origen</h3>
+            <p>Ojales metálicos que encajan en los anclajes de fábrica de tu coche. La alfombrilla no se desliza.</p>
+        </article>
+        <article class="detalle">
+            <div class="detalle-image"><img src="images/detalhe-borda.webp" alt="Bordes elevados de 5 cm" loading="lazy"></div>
+            <h3>Bordes Elevados de Contención</h3>
+            <p>5 cm de borde para retener líquidos, barro y restos, y mantener intacta la moqueta original.</p>
+        </article>
     </section>
 
     <!-- FAQ -->
     <section class="faq" id="faq">
-        <div class="container narrow">
-            <details>
-                <summary>Descripción del producto</summary>
+        <div class="faq-accordion">
+            <details class="faq-item">
+                <summary>Descripción del Producto</summary>
                 <p>Kit de alfombrillas 3D en goma termoformada, fabricado a la medida del modelo y año de tu coche. Incluye delanteras y traseras, con bordes elevados y ojales compatibles con los anclajes de origen.</p>
             </details>
-            <details>
+            <details class="faq-item">
                 <summary>Envío</summary>
                 <p>Envío gratuito con seguimiento a toda España peninsular. Baleares, Canarias, Ceuta y Melilla: consulta condiciones. Recibirás el número de seguimiento por email al expedir tu pedido.</p>
             </details>
-            <details>
-                <summary>Garantía y devoluciones</summary>
+            <details class="faq-item">
+                <summary>Garantía y Devoluciones</summary>
                 <p>12 meses de garantía contra defectos de fabricación y 30 días para devolver el producto si no te convence, conforme a la normativa de consumo española.</p>
             </details>
-            <details>
-                <summary>Especificaciones técnicas</summary>
+            <details class="faq-item">
+                <summary>Especificaciones Técnicas</summary>
                 <ul>
                     <li>Material: goma premium de alto rendimiento</li>
                     <li>Grosor: 7 mm</li>
@@ -288,40 +293,45 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container footer-grid">
-            <div>
-                <img src="images/protekar-logo.png" alt="ProTekar 3D" width="140" height="40" class="footer-logo">
-                <p>ProTekar es especialista en accesorios premium a medida para coche. Calidad, confort y protección para tu vehículo.</p>
+        <div class="footer-inner">
+            <img src="images/protekar-logo.png" alt="ProTekar 3D" class="footer-logo">
+            <p class="footer-about">ProTekar es especialista en accesorios premium a medida para coche. Calidad, confort y protección para tu vehículo.</p>
+            <div class="footer-cols">
+                <div>
+                    <h4>Información</h4>
+                    <ul>
+                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><a href="#">Política de Cookies</a></li>
+                        <li><a href="#">Términos y Condiciones</a></li>
+                        <li><a href="#">Política de Envíos</a></li>
+                        <li><a href="#">Cambios y Devoluciones</a></li>
+                        <li><a href="#">Aviso Legal</a></li>
+                        <li><a href="#">Hojas de Reclamaciones</a></li>
+                        <li><a href="#">Seguimiento de Pedido</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li><span class="ico">✉</span> <a href="mailto:soporte@protekar.es">soporte@protekar.es</a></li>
+                        <li><span class="ico">⌖</span> Madrid – España</li>
+                    </ul>
+                </div>
             </div>
-            <div>
-                <h4>Información</h4>
-                <ul>
-                    <li><a href="#">Política de Privacidad</a></li>
-                    <li><a href="#">Política de Cookies</a></li>
-                    <li><a href="#">Términos y Condiciones</a></li>
-                    <li><a href="#">Política de Envíos</a></li>
-                    <li><a href="#">Cambios y Devoluciones</a></li>
-                    <li><a href="#">Aviso Legal</a></li>
-                    <li><a href="#">Seguimiento de Pedido</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Contacto</h4>
-                <ul>
-                    <li><a href="mailto:soporte@protekar.es">soporte@protekar.es</a></li>
-                    <li>Madrid – España</li>
-                </ul>
-            </div>
+            <p class="footer-bottom">© 2026 ProTekar España · Todos los derechos reservados</p>
         </div>
-        <p class="footer-bottom">© 2026 ProTekar España · Todos los derechos reservados</p>
     </footer>
 
     <!-- Sticky buy bar -->
-    <div class="buybar" id="buybar">
-        <div class="buybar-price"><small>Desde</small> <span data-price></span></div>
-        <a href="#configurador" class="btn-gold btn-sm">Comprar ahora</a>
+    <div class="sticky" id="buybar">
+        <div class="sticky-info">
+            <span class="price-now" data-price></span>
+            <small>Envío gratis · IVA incluido</small>
+        </div>
+        <a href="#configurador" class="sticky-cta">Comprar ahora →</a>
     </div>
 
+    <script src="reviews.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
