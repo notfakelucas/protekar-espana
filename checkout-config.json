@@ -30,26 +30,27 @@
       "features": ["3 alfombrillas interiores a medida", "Trasera de una pieza con protección central", "Alfombrilla de maletero premium", "REGALO: Ambientador gratis"]
     }
   ],
+  "onlineDiscount": 5,
   "shipping": [
     {
       "id": "estandar",
-      "name": "Envío Estándar",
+      "name": "Envío normal — FedEx",
       "tag": "INCLUIDO",
-      "eta": "Llega en 4 a 8 días hábiles",
+      "eta": "Llega en hasta 6 días hábiles",
       "note": "Expedición en 24–48 h · código de seguimiento por email y WhatsApp",
       "price": 0,
       "minDays": 4,
-      "maxDays": 8
+      "maxDays": 6
     },
     {
       "id": "prioritario",
-      "name": "Envío Prioritario",
+      "name": "Envío exprés — DHL Express",
       "tag": "MÁS RÁPIDO",
-      "eta": "Llega en 2 a 4 días hábiles",
+      "eta": "Llega en 1 día hábil",
       "note": "Preparación prioritaria · sale primero de nuestro almacén, con seguimiento en vivo",
-      "price": 490,
-      "minDays": 2,
-      "maxDays": 4
+      "price": 900,
+      "minDays": 1,
+      "maxDays": 1
     }
   ],
   "bumps": [
@@ -57,7 +58,8 @@
       "id": "aspirador",
       "name": "Aspiradora Portátil 12V",
       "description": "Aspira migas, polvo y pelos. Se conecta al mechero de tu coche.",
-      "price": 1490,
+      "price": 790,
+      "compareAt": 1290,
       "image": "images/bump-aspirador.jpg"
     },
     {
@@ -65,6 +67,7 @@
       "name": "Humidificador Aromático",
       "description": "Difusor con luz LED. Un ambiente fresco en cada viaje.",
       "price": 990,
+      "compareAt": 1490,
       "image": "images/bump-humidificador.png"
     }
   ],
